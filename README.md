@@ -1,6 +1,57 @@
 # Poke App
 
-Under construction.
+Flutter application that consumes the Pokémon API to display, list, and detail information about creatures quickly and responsively.
+
+
+## Packages
+
+### Main Dependencies
+
+- connectivity_plus – Real-time internet connectivity check.
+
+- dio – Robust HTTP client for consuming APIs, with interceptors and advanced error handling.
+
+- get_it – Lightweight and decoupled dependency injection.
+
+- go_router – Modern, declarative route management integrated with Navigator 2.0.
+
+### Development Dependencies
+
+- flutter_test – Unit and widget tests.
+
+- flutter_lints – Code standardization and best practices.
+
+- build_runner – Automatic code generation.
+
+- mockito – Creation of mocks for testing.
+
+### State Management
+
+ Uses ChangeNotifier + ListenableBuilder as they are native Flutter solutions, ensuring:
+
+- Reduced coupling to external libraries
+
+- Simplicity
+
+- Easy maintenance
+
+
+## ScreenShots
+
+| Image 1 | Image 2 | Image 3 |
+|----------|----------|----------|
+| ![App Screenshot](assets/screenshots/screen-1.png) | ![App Screenshot](assets/screenshots/screen-2.png) | ![App Screenshot](assets/screenshots/screen-3.png) |
+
+
+## Test and Coverage
+
+flutter pub run build_runner build --delete-conflicting-outputs
+
+flutter test --coverage
+
+genhtml coverage/lcov.info -o coverage/html
+
+open coverage/html/index.html
 
 
 ## License
