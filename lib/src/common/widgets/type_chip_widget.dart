@@ -23,7 +23,7 @@ class TypeChipWidget extends StatelessWidget {
         vertical: isSmall ? 4 : 8,
       ),
       decoration: BoxDecoration(
-        color: isWeakness ? color.withOpacity(0.15) : color,
+        color: isWeakness ? color.withValues(alpha: 0.15) : color,
         borderRadius: BorderRadius.circular(isSmall ? 8 : 20),
         border: isWeakness ? Border.all(color: color, width: 1.5) : null,
       ),

@@ -20,7 +20,10 @@ class DetailHeaderWidget extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [typeColor.withOpacity(0.2), typeColor.withOpacity(0.1)],
+          colors: [
+            typeColor.withValues(alpha: 0.2),
+            typeColor.withValues(alpha: 0.1),
+          ],
         ),
         borderRadius: BorderRadius.circular(20),
       ),
@@ -40,7 +43,7 @@ class DetailHeaderWidget extends StatelessWidget {
                   return Icon(
                     Icons.catching_pokemon,
                     size: 100,
-                    color: typeColor.withOpacity(0.5),
+                    color: typeColor.withValues(alpha: 0.5),
                   );
                 },
               ),

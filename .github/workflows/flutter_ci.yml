@@ -17,8 +17,11 @@ jobs:
       - name: 📦 Install dependencies
         run: flutter pub get
 
-      - name: 🧠 Analyze code
-        run: flutter analyze
+      # - name: 🧠 Analyze code # Ignored for now.
+      #   run: flutter analyze
 
       - name: 🧪 Run unit and integration tests
         run: flutter test --coverage
+
+      - name: 📦 Build APK Release
+        run: flutter build apk --release

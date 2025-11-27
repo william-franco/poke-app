@@ -30,9 +30,9 @@ class RelatedPokemonCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Ink(
           decoration: BoxDecoration(
-            color: typeColor.withOpacity(0.1),
+            color: typeColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: typeColor.withOpacity(0.3)),
+            border: Border.all(color: typeColor.withValues(alpha: 0.3)),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class RelatedPokemonCardWidget extends StatelessWidget {
                   return Icon(
                     Icons.catching_pokemon,
                     size: 40,
-                    color: typeColor.withOpacity(0.5),
+                    color: typeColor.withValues(alpha: 0.5),
                   );
                 },
               ),

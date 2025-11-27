@@ -22,7 +22,7 @@ class ErrorViewWidget extends StatelessWidget {
             Icon(
               Icons.error_outline,
               size: 64,
-              color: ThemeDesign.primaryRed.withOpacity(0.7),
+              color: ThemeDesign.primaryRed.withValues(alpha: 0.7),
             ),
             const SizedBox(height: 16),
             const Text(

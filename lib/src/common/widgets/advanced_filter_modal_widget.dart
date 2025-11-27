@@ -86,7 +86,7 @@ class AdvancedFilterModalWidget extends StatelessWidget {
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: isSelected ? color : color.withOpacity(0.1),
+                    color: isSelected ? color : color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: color, width: isSelected ? 2 : 1),
                   ),

@@ -32,7 +32,7 @@ class PokemonCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: typeColor.withOpacity(0.2),
+              color: typeColor.withValues(alpha: 0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -50,8 +50,8 @@ class PokemonCardWidget extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      typeColor.withOpacity(0.1),
-                      typeColor.withOpacity(0.05),
+                      typeColor.withValues(alpha: 0.1),
+                      typeColor.withValues(alpha: 0.05),
                     ],
                   ),
                   borderRadius: const BorderRadius.vertical(
@@ -69,7 +69,7 @@ class PokemonCardWidget extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,
-                          color: typeColor.withOpacity(0.6),
+                          color: typeColor.withValues(alpha: 0.6),
                         ),
                       ),
                     ),
@@ -93,7 +93,7 @@ class PokemonCardWidget extends StatelessWidget {
                             return Icon(
                               Icons.catching_pokemon,
                               size: 40,
-                              color: typeColor.withOpacity(0.5),
+                              color: typeColor.withValues(alpha: 0.5),
                             );
                           },
                         ),
