@@ -1,5 +1,6 @@
 class ApiConstant {
-  static const String _baseApi = 'https://jsonplaceholder.typicode.com';
-  static const String todos = '$_baseApi/todos';
-  static const String users = '$_baseApi/users';
+  static const String _baseApi =
+      'https://raw.githubusercontent.com/Biuni/PokemonGo-Pokedex/master';
+
+  static const String pokemons = '$_baseApi/pokedex.json';
 }

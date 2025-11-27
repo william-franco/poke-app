@@ -3,7 +3,7 @@ import 'package:poke_app/src/common/dependency_injectors/dependency_injector.dar
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/routes/routes.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   dependencyInjector();
   final Routes appRoutes = Routes();
