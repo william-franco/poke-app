@@ -14,7 +14,7 @@ import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_stats
 import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_types_section_widget.dart';
 import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_weaknesses_section_widget.dart';
 
-class PokemonDetailView extends StatelessWidget {
+class PokemonDetailView extends StatefulWidget {
   final PokemonEntity pokemon;
   final PokemonsViewModel viewModel;
 
@@ -24,13 +24,26 @@ class PokemonDetailView extends StatelessWidget {
     required this.viewModel,
   });
 
+  @override
+  State<PokemonDetailView> createState() => _PokemonDetailViewState();
+}
+
+class _PokemonDetailViewState extends State<PokemonDetailView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.viewModel.logPokemonDetailView(widget.pokemon);
+    });
+  }
+
   String _getTypeString(Type type) {
     return typeValues.reverse[type] ?? type.name;
   }
 
   @override
   Widget build(BuildContext context) {
-    final types = pokemon.type ?? [];
+    final types = widget.pokemon.type ?? [];
     final primaryType = types.isNotEmpty ? types.first : Type.NORMAL;
     final typeColor = ThemeDesign.getTypeColor(_getTypeString(primaryType));
 
@@ -65,25 +78,31 @@ class PokemonDetailView extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // HEADER
-                DetailHeaderWidget(pokemon: pokemon, typeColor: typeColor),
+                DetailHeaderWidget(
+                  pokemon: widget.pokemon,
+                  typeColor: typeColor,
+                ),
 
                 const SizedBox(height: 24),
 
                 // NAME
-                DetailNameSectionWidget(pokemon: pokemon, typeColor: typeColor),
+                DetailNameSectionWidget(
+                  pokemon: widget.pokemon,
+                  typeColor: typeColor,
+                ),
 
                 const SizedBox(height: 24),
 
                 // TYPES
                 const DetailSectionTitleWidget(title: 'Tipos'),
-                DetailTypesSectionWidget(pokemon: pokemon),
+                DetailTypesSectionWidget(pokemon: widget.pokemon),
 
                 const SizedBox(height: 24),
 
                 // STATS
                 const DetailSectionTitleWidget(title: 'Status Base'),
                 DetailStatsSectionWidget(
-                  pokemon: pokemon,
+                  pokemon: widget.pokemon,
                   typeColor: typeColor,
                 ),
 
@@ -92,7 +111,7 @@ class PokemonDetailView extends StatelessWidget {
                 // PHYSICAL INFO
                 const DetailSectionTitleWidget(title: 'Informações Físicas'),
                 DetailPhysicalInfoWidget(
-                  pokemon: pokemon,
+                  pokemon: widget.pokemon,
                   typeColor: typeColor,
                 ),
 
@@ -100,7 +119,7 @@ class PokemonDetailView extends StatelessWidget {
 
                 // WEAKNESSES
                 const DetailSectionTitleWidget(title: 'Fraquezas'),
-                DetailWeaknessesSectionWidget(pokemon: pokemon),
+                DetailWeaknessesSectionWidget(pokemon: widget.pokemon),
 
                 const SizedBox(height: 24),
 
@@ -108,9 +127,11 @@ class PokemonDetailView extends StatelessWidget {
                   title: 'Relacionados / Evoluções',
                 ),
                 DetailRelatedSectionWidget(
-                  pokemon: pokemon,
-                  viewModel: viewModel,
+                  pokemon: widget.pokemon,
+                  viewModel: widget.viewModel,
                   onRelatedTap: (related) {
+                    widget.viewModel.logEvolutionView(widget.pokemon, related);
+
                     context.pop();
 
                     Future.delayed(const Duration(milliseconds: 250), () {

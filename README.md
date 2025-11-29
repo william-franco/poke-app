@@ -36,6 +36,25 @@ Flutter application that consumes the Pokémon API to display, list, and detail 
 - Easy maintenance
 
 
+## Native Integration
+
+### Google Analytics (Android)
+The app integrates **Firebase Analytics** natively using **MethodChannel** for direct communication between Flutter and Kotlin:
+
+- **Native SDK**: Direct Firebase Analytics integration on Android
+- **MethodChannel**: Bidirectional communication Flutter ↔ Kotlin
+- **Events tracked**:
+  - Screen views (Home, Pokemon Detail)
+  - User interactions (search, filter, sort)
+  - Pokemon views and evolution navigation
+  - Error logging
+
+
+## CI/CD with GitHub Actions
+
+This project uses **GitHub Actions** for continuous integration and automated testing.
+
+
 ## ScreenShots
 
 | Image 1 | Image 2 | Image 3 |

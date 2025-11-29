@@ -4,33 +4,34 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:ui' as _i18;
+import 'dart:ui' as _i19;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i8;
-import 'package:poke_app/src/common/enums/pokemons_enums.dart' as _i15;
-import 'package:poke_app/src/common/results/result.dart' as _i6;
-import 'package:poke_app/src/common/services/connection_service.dart' as _i2;
-import 'package:poke_app/src/common/services/http_service.dart' as _i4;
-import 'package:poke_app/src/common/states/state.dart' as _i17;
+import 'package:mockito/src/dummies.dart' as _i10;
+import 'package:poke_app/src/common/enums/pokemons_enums.dart' as _i16;
+import 'package:poke_app/src/common/results/result.dart' as _i8;
+import 'package:poke_app/src/common/services/analytics_service.dart' as _i2;
+import 'package:poke_app/src/common/services/connection_service.dart' as _i5;
+import 'package:poke_app/src/common/services/http_service.dart' as _i6;
+import 'package:poke_app/src/common/states/state.dart' as _i18;
 import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source.dart'
-    as _i5;
-import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart'
     as _i7;
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart'
-    as _i10;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart'
+import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart'
     as _i9;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart'
+import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart'
+    as _i4;
+import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart'
     as _i11;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_related_pokemons_use_case.dart'
+import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart'
     as _i12;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/search_pokemons_use_case.dart'
+import 'package:poke_app/src/features/pokemons/domain/use_cases/get_related_pokemons_use_case.dart'
     as _i13;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/sort_pokemons_use_case.dart'
+import 'package:poke_app/src/features/pokemons/domain/use_cases/search_pokemons_use_case.dart'
     as _i14;
+import 'package:poke_app/src/features/pokemons/domain/use_cases/sort_pokemons_use_case.dart'
+    as _i15;
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart'
-    as _i16;
+    as _i17;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -47,10 +48,246 @@ import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons
 // ignore_for_file: subtype_of_sealed_class
 // ignore_for_file: invalid_use_of_internal_member
 
+/// A class which mocks [AnalyticsService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAnalyticsService extends _i1.Mock implements _i2.AnalyticsService {
+  MockAnalyticsService() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logEvent({
+    required String? eventName,
+    Map<String, dynamic>? parameters,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logEvent, [], {
+              #eventName: eventName,
+              #parameters: parameters,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logScreenView({
+    required String? screenName,
+    String? screenClass,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logScreenView, [], {
+              #screenName: screenName,
+              #screenClass: screenClass,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> setUserId(
+    String? userId,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#setUserId, [userId]),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> setUserProperty({
+    required String? name,
+    required String? value,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#setUserProperty, [], {
+              #name: name,
+              #value: value,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logPokemonView({
+    required int? pokemonId,
+    required String? pokemonName,
+    String? pokemonType,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logPokemonView, [], {
+              #pokemonId: pokemonId,
+              #pokemonName: pokemonName,
+              #pokemonType: pokemonType,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logSearch({
+    required String? searchTerm,
+    required int? resultsCount,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logSearch, [], {
+              #searchTerm: searchTerm,
+              #resultsCount: resultsCount,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logFilter({
+    required String? filterType,
+    required String? filterValue,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logFilter, [], {
+              #filterType: filterType,
+              #filterValue: filterValue,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logSort({
+    required String? sortType,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logSort, [], {#sortType: sortType}),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  setAnalyticsEnabled(bool? enabled) =>
+      (super.noSuchMethod(
+            Invocation.method(#setAnalyticsEnabled, [enabled]),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})> logError({
+    required String? errorMessage,
+    String? errorCode,
+    Map<String, dynamic>? additionalData,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logError, [], {
+              #errorMessage: errorMessage,
+              #errorCode: errorCode,
+              #additionalData: additionalData,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  logPokemonViewFromEntity(_i4.PokemonEntity? pokemon) =>
+      (super.noSuchMethod(
+            Invocation.method(#logPokemonViewFromEntity, [pokemon]),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  logPokemonListLoaded(int? count) =>
+      (super.noSuchMethod(
+            Invocation.method(#logPokemonListLoaded, [count]),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  logPokemonLoadError(String? error) =>
+      (super.noSuchMethod(
+            Invocation.method(#logPokemonLoadError, [error]),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  logFilterCleared() =>
+      (super.noSuchMethod(
+            Invocation.method(#logFilterCleared, []),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+
+  @override
+  _i3.Future<({String? error, String? message, bool success})>
+  logEvolutionViewed({
+    required String? fromPokemon,
+    required String? toPokemon,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#logEvolutionViewed, [], {
+              #fromPokemon: fromPokemon,
+              #toPokemon: toPokemon,
+            }),
+            returnValue:
+                _i3.Future<
+                  ({String? error, String? message, bool success})
+                >.value((error: null, message: null, success: false)),
+          )
+          as _i3.Future<({String? error, String? message, bool success})>);
+}
+
 /// A class which mocks [ConnectionService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConnectionService extends _i1.Mock implements _i2.ConnectionService {
+class MockConnectionService extends _i1.Mock implements _i5.ConnectionService {
   MockConnectionService() {
     _i1.throwOnMissingStub(this);
   }
@@ -73,7 +310,7 @@ class MockConnectionService extends _i1.Mock implements _i2.ConnectionService {
 /// A class which mocks [HttpService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHttpService extends _i1.Mock implements _i4.HttpService {
+class MockHttpService extends _i1.Mock implements _i6.HttpService {
   MockHttpService() {
     _i1.throwOnMissingStub(this);
   }
@@ -96,170 +333,169 @@ class MockHttpService extends _i1.Mock implements _i4.HttpService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPokemonsDataSource extends _i1.Mock
-    implements _i5.PokemonsDataSource {
+    implements _i7.PokemonsDataSource {
   MockPokemonsDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i6.Result<List<_i7.PokemonModel>, Exception>> getAllPokemon() =>
+  _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>> getAllPokemon() =>
       (super.noSuchMethod(
             Invocation.method(#getAllPokemon, []),
             returnValue:
-                _i3.Future<_i6.Result<List<_i7.PokemonModel>, Exception>>.value(
-                  _i8.dummyValue<_i6.Result<List<_i7.PokemonModel>, Exception>>(
-                    this,
-                    Invocation.method(#getAllPokemon, []),
-                  ),
+                _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>>.value(
+                  _i10.dummyValue<
+                    _i8.Result<List<_i9.PokemonModel>, Exception>
+                  >(this, Invocation.method(#getAllPokemon, [])),
                 ),
           )
-          as _i3.Future<_i6.Result<List<_i7.PokemonModel>, Exception>>);
+          as _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>>);
 }
 
 /// A class which mocks [FilterByTypeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFilterByTypeUseCase extends _i1.Mock
-    implements _i9.FilterByTypeUseCase {
+    implements _i11.FilterByTypeUseCase {
   MockFilterByTypeUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i10.PokemonEntity> call(
-    List<_i10.PokemonEntity>? pokemonList,
+  List<_i4.PokemonEntity> call(
+    List<_i4.PokemonEntity>? pokemonList,
     String? type,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#call, [pokemonList, type]),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 }
 
 /// A class which mocks [GetAllPokemonsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllPokemonsUseCase extends _i1.Mock
-    implements _i11.GetAllPokemonsUseCase {
+    implements _i12.GetAllPokemonsUseCase {
   MockGetAllPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i6.Result<List<_i10.PokemonEntity>, Exception>> call() =>
+  _i3.Future<_i8.Result<List<_i4.PokemonEntity>, Exception>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
             returnValue:
                 _i3.Future<
-                  _i6.Result<List<_i10.PokemonEntity>, Exception>
+                  _i8.Result<List<_i4.PokemonEntity>, Exception>
                 >.value(
-                  _i8.dummyValue<
-                    _i6.Result<List<_i10.PokemonEntity>, Exception>
+                  _i10.dummyValue<
+                    _i8.Result<List<_i4.PokemonEntity>, Exception>
                   >(this, Invocation.method(#call, [])),
                 ),
           )
-          as _i3.Future<_i6.Result<List<_i10.PokemonEntity>, Exception>>);
+          as _i3.Future<_i8.Result<List<_i4.PokemonEntity>, Exception>>);
 }
 
 /// A class which mocks [GetRelatedPokemonsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetRelatedPokemonsUseCase extends _i1.Mock
-    implements _i12.GetRelatedPokemonsUseCase {
+    implements _i13.GetRelatedPokemonsUseCase {
   MockGetRelatedPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i10.PokemonEntity> call(
-    _i10.PokemonEntity? pokemon,
-    List<_i10.PokemonEntity>? allPokemon,
+  List<_i4.PokemonEntity> call(
+    _i4.PokemonEntity? pokemon,
+    List<_i4.PokemonEntity>? allPokemon,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#call, [pokemon, allPokemon]),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 }
 
 /// A class which mocks [SearchPokemonsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSearchPokemonsUseCase extends _i1.Mock
-    implements _i13.SearchPokemonsUseCase {
+    implements _i14.SearchPokemonsUseCase {
   MockSearchPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i10.PokemonEntity> call(
-    List<_i10.PokemonEntity>? pokemonList,
+  List<_i4.PokemonEntity> call(
+    List<_i4.PokemonEntity>? pokemonList,
     String? query,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#call, [pokemonList, query]),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 }
 
 /// A class which mocks [SortPokemonsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSortPokemonsUseCase extends _i1.Mock
-    implements _i14.SortPokemonsUseCase {
+    implements _i15.SortPokemonsUseCase {
   MockSortPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i10.PokemonEntity> call(
-    List<_i10.PokemonEntity>? pokemonList,
-    _i15.SortType? sortType,
+  List<_i4.PokemonEntity> call(
+    List<_i4.PokemonEntity>? pokemonList,
+    _i16.SortType? sortType,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#call, [pokemonList, sortType]),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 }
 
 /// A class which mocks [PokemonsViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPokemonsViewModel extends _i1.Mock implements _i16.PokemonsViewModel {
+class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
   MockPokemonsViewModel() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i17.AppState<List<_i10.PokemonEntity>> get pokemonState =>
+  _i18.AppState<List<_i4.PokemonEntity>> get pokemonState =>
       (super.noSuchMethod(
             Invocation.getter(#pokemonState),
-            returnValue: _i8
-                .dummyValue<_i17.AppState<List<_i10.PokemonEntity>>>(
+            returnValue: _i10
+                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
                   this,
                   Invocation.getter(#pokemonState),
                 ),
           )
-          as _i17.AppState<List<_i10.PokemonEntity>>);
+          as _i18.AppState<List<_i4.PokemonEntity>>);
 
   @override
-  List<_i10.PokemonEntity> get displayedPokemon =>
+  List<_i4.PokemonEntity> get displayedPokemon =>
       (super.noSuchMethod(
             Invocation.getter(#displayedPokemon),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 
   @override
-  _i15.SortType get currentSort =>
+  _i16.SortType get currentSort =>
       (super.noSuchMethod(
             Invocation.getter(#currentSort),
-            returnValue: _i15.SortType.alphabetical,
+            returnValue: _i16.SortType.alphabetical,
           )
-          as _i15.SortType);
+          as _i16.SortType);
 
   @override
   List<String> get availableTypes =>
@@ -290,7 +526,7 @@ class MockPokemonsViewModel extends _i1.Mock implements _i16.PokemonsViewModel {
   );
 
   @override
-  void sortPokemon(_i15.SortType? sortType) => super.noSuchMethod(
+  void sortPokemon(_i16.SortType? sortType) => super.noSuchMethod(
     Invocation.method(#sortPokemon, [sortType]),
     returnValueForMissingStub: null,
   );
@@ -308,21 +544,42 @@ class MockPokemonsViewModel extends _i1.Mock implements _i16.PokemonsViewModel {
   );
 
   @override
-  List<_i10.PokemonEntity> getRelatedPokemon(_i10.PokemonEntity? pokemon) =>
+  List<_i4.PokemonEntity> getRelatedPokemon(_i4.PokemonEntity? pokemon) =>
       (super.noSuchMethod(
             Invocation.method(#getRelatedPokemon, [pokemon]),
-            returnValue: <_i10.PokemonEntity>[],
+            returnValue: <_i4.PokemonEntity>[],
           )
-          as List<_i10.PokemonEntity>);
+          as List<_i4.PokemonEntity>);
 
   @override
-  void addListener(_i18.VoidCallback? listener) => super.noSuchMethod(
+  _i3.Future<void> logPokemonDetailView(_i4.PokemonEntity? pokemon) =>
+      (super.noSuchMethod(
+            Invocation.method(#logPokemonDetailView, [pokemon]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> logEvolutionView(
+    _i4.PokemonEntity? from,
+    _i4.PokemonEntity? to,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#logEvolutionView, [from, to]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  void addListener(_i19.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#addListener, [listener]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void removeListener(_i18.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i19.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#removeListener, [listener]),
     returnValueForMissingStub: null,
   );

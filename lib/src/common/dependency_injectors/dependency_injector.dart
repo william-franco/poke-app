@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:poke_app/src/common/services/analytics_service.dart';
 import 'package:poke_app/src/common/services/connection_service.dart';
 import 'package:poke_app/src/common/services/http_service.dart';
 import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source.dart';
@@ -15,9 +16,14 @@ import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons
 final locator = GetIt.instance;
 
 void dependencyInjector() {
+  _startAnalyticsService();
   _startConnectionService();
   _startHttpService();
   _startFeaturePokemons();
+}
+
+void _startAnalyticsService() {
+  locator.registerLazySingleton<AnalyticsService>(() => AnalyticsServiceImpl());
 }
 
 void _startConnectionService() {
@@ -67,6 +73,7 @@ void _startFeaturePokemons() {
   );
   locator.registerLazySingleton<PokemonsViewModel>(
     () => PokemonsViewModelImpl(
+      analyticsService: locator<AnalyticsService>(),
       filterByTypeUseCase: locator<FilterByTypeUseCase>(),
       getAllPokemonsUseCase: locator<GetAllPokemonsUseCase>(),
       getRelatedPokemonsUseCase: locator<GetRelatedPokemonsUseCase>(),
