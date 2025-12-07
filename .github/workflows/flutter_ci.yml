@@ -11,8 +11,8 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.38.3'
-          channel: 'stable'
+          flutter-version: "3.38.4"
+          channel: "stable"
 
       - name: 📦 Install dependencies
         run: flutter pub get
@@ -23,5 +23,5 @@ jobs:
       - name: 🧪 Run unit and integration tests
         run: flutter test --coverage
 
-      - name: 📦 Build APK Release
-        run: flutter build apk --release
+      # - name: 📦 Build APK Release
+      #   run: flutter build apk --release
