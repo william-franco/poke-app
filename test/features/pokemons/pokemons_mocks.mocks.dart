@@ -9,11 +9,11 @@ import 'dart:ui' as _i19;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i10;
 import 'package:poke_app/src/common/enums/pokemons_enums.dart' as _i16;
-import 'package:poke_app/src/common/results/result.dart' as _i8;
+import 'package:poke_app/src/common/patterns/app_state_pattern.dart' as _i18;
+import 'package:poke_app/src/common/patterns/result_pattern.dart' as _i8;
 import 'package:poke_app/src/common/services/analytics_service.dart' as _i2;
 import 'package:poke_app/src/common/services/connection_service.dart' as _i5;
 import 'package:poke_app/src/common/services/http_service.dart' as _i6;
-import 'package:poke_app/src/common/states/state.dart' as _i18;
 import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source.dart'
     as _i7;
 import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart'

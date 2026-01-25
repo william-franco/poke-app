@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/common/results/result.dart';
+import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
+import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
-import 'package:poke_app/src/common/states/state.dart';
 import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';

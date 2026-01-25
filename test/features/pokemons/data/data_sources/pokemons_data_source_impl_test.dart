@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:poke_app/src/common/results/result.dart';
+import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source_impl.dart';
 import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart';
 

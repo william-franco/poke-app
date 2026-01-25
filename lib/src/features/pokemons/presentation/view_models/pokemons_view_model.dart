@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
+import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
-import 'package:poke_app/src/common/states/state.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart';
 import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart';

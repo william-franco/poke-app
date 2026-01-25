@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
-import 'package:poke_app/src/common/states/state.dart';
+import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/widgets/error_view_widget.dart';
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
 import 'package:poke_app/src/features/pokemons/presentation/widgets/pokemons_grid_view_widget.dart';
