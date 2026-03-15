@@ -11,16 +11,12 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
 
   @override
   Future<PokemonResult> getAllPokemon() async {
-    try {
-      final result = await dataSource.getAllPokemon();
+    final result = await dataSource.getAllPokemon();
 
-      return result.fold<PokemonResult>(
-        onSuccess: (pokemonList) => SuccessResult(value: pokemonList),
-        onError: (error) => ErrorResult(error: error),
-      );
-    } catch (error) {
-      return ErrorResult(error: Exception(error));
-    }
+    return result.fold<PokemonResult>(
+      onSuccess: (pokemonList) => SuccessResult(value: pokemonList),
+      onError: (error) => ErrorResult(error: error),
+    );
   }
 
   @override

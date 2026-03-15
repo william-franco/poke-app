@@ -31,8 +31,10 @@ class PokemonsRoutes {
           child: Stack(
             children: [
               GestureDetector(
-                onTap: () => context.pop(),
                 child: Container(color: Colors.black54),
+                onTap: () {
+                  context.pop();
+                },
               ),
 
               PokemonDetailView(

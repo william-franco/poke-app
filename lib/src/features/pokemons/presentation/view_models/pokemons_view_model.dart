@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
@@ -212,7 +212,7 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
     if (_pokemonState != newState) {
       _pokemonState = newState;
       notifyListeners();
-      debugPrint('Pokemon State: $_pokemonState');
+      debugPrint('Pokemon State: $pokemonState');
     }
   }
 }

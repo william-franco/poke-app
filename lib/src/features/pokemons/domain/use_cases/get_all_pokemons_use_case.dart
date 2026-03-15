@@ -15,10 +15,6 @@ class GetAllPokemonsUseCaseImpl implements GetAllPokemonsUseCase {
 
   @override
   Future<PokemonResult> call() async {
-    try {
-      return await pokemonsRepository.getAllPokemon();
-    } catch (_) {
-      rethrow;
-    }
+    return await pokemonsRepository.getAllPokemon();
   }
 }
