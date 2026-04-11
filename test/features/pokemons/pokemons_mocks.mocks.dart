@@ -470,26 +470,6 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
   }
 
   @override
-  _i18.AppState<List<_i4.PokemonEntity>> get pokemonState =>
-      (super.noSuchMethod(
-            Invocation.getter(#pokemonState),
-            returnValue: _i10
-                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
-                  this,
-                  Invocation.getter(#pokemonState),
-                ),
-          )
-          as _i18.AppState<List<_i4.PokemonEntity>>);
-
-  @override
-  List<_i4.PokemonEntity> get displayedPokemon =>
-      (super.noSuchMethod(
-            Invocation.getter(#displayedPokemon),
-            returnValue: <_i4.PokemonEntity>[],
-          )
-          as List<_i4.PokemonEntity>);
-
-  @override
   _i16.SortType get currentSort =>
       (super.noSuchMethod(
             Invocation.getter(#currentSort),
@@ -504,6 +484,18 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
             returnValue: <String>[],
           )
           as List<String>);
+
+  @override
+  _i18.AppState<List<_i4.PokemonEntity>> get state =>
+      (super.noSuchMethod(
+            Invocation.getter(#state),
+            returnValue: _i10
+                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
+                  this,
+                  Invocation.getter(#state),
+                ),
+          )
+          as _i18.AppState<List<_i4.PokemonEntity>>);
 
   @override
   bool get hasListeners =>
@@ -571,6 +563,25 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
             returnValueForMissingStub: _i3.Future<void>.value(),
           )
           as _i3.Future<void>);
+
+  @override
+  _i18.AppState<List<_i4.PokemonEntity>> build() =>
+      (super.noSuchMethod(
+            Invocation.method(#build, []),
+            returnValue: _i10
+                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
+                  this,
+                  Invocation.method(#build, []),
+                ),
+          )
+          as _i18.AppState<List<_i4.PokemonEntity>>);
+
+  @override
+  void emitState(_i18.AppState<List<_i4.PokemonEntity>>? newState) =>
+      super.noSuchMethod(
+        Invocation.method(#emitState, [newState]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addListener(_i19.VoidCallback? listener) => super.noSuchMethod(

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
+import 'package:poke_app/src/common/state_management/state_management.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart';
 import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart';
@@ -9,13 +10,11 @@ import 'package:poke_app/src/features/pokemons/domain/use_cases/get_related_poke
 import 'package:poke_app/src/features/pokemons/domain/use_cases/search_pokemons_use_case.dart';
 import 'package:poke_app/src/features/pokemons/domain/use_cases/sort_pokemons_use_case.dart';
 
-typedef _ViewModel = ChangeNotifier;
-
 typedef PokemonState = AppState<List<PokemonEntity>>;
 
+typedef _ViewModel = StateManagement<PokemonState>;
+
 abstract interface class PokemonsViewModel extends _ViewModel {
-  PokemonState get pokemonState;
-  List<PokemonEntity> get displayedPokemon;
   SortType get currentSort;
   String? get selectedTypeFilter;
   List<String> get availableTypes;
@@ -48,18 +47,10 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
     required this.getRelatedPokemonsUseCase,
   });
 
-  PokemonState _pokemonState = const InitialState();
   List<PokemonEntity> _allPokemon = [];
-  List<PokemonEntity> _displayedPokemon = [];
   SortType _currentSort = SortType.byNumber;
   String? _selectedTypeFilter;
   String _searchQuery = '';
-
-  @override
-  PokemonState get pokemonState => _pokemonState;
-
-  @override
-  List<PokemonEntity> get displayedPokemon => _displayedPokemon;
 
   @override
   SortType get currentSort => _currentSort;
@@ -70,105 +61,88 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
   @override
   List<String> get availableTypes {
     final types = <String>{};
-
-    for (var pokemon in _allPokemon) {
-      final pokemonTypes = pokemon.type ?? [];
-
-      final typeNames = pokemonTypes.map((t) {
-        return typeValues.reverse[t] ?? t.name;
-      });
-
+    for (final pokemon in _allPokemon) {
+      final typeNames = (pokemon.type ?? []).map(
+        (t) => typeValues.reverse[t] ?? t.name,
+      );
       types.addAll(typeNames);
     }
-
-    final list = types.toList()..sort();
-    return list;
+    return types.toList()..sort();
   }
+
+  @override
+  PokemonState build() => const InitialState();
 
   @override
   Future<void> loadPokemon() async {
     _emit(const LoadingState());
 
-    // Log screen view
     await analyticsService.logScreenView(screenName: 'Pokedex Home');
 
     final result = await getAllPokemonsUseCase.call();
 
-    final state = result.fold<PokemonState>(
+    final pokemonState = result.fold<PokemonState>(
       onSuccess: (pokemonList) {
         _allPokemon = pokemonList;
-        _applyFiltersAndSort();
-
-        // Log success
         analyticsService.logPokemonListLoaded(_allPokemon.length);
-
-        return SuccessState(data: _displayedPokemon);
+        return SuccessState(data: _computeDisplayedPokemon());
       },
       onError: (error) {
-        // Log error
         analyticsService.logPokemonLoadError(error.toString());
-
-        return ErrorState(message: error.toString());
+        return ErrorState(message: '$error');
       },
     );
 
-    _emit(state);
+    _emit(pokemonState);
   }
 
   @override
   void searchPokemon(String query) {
     _searchQuery = query;
-    _applyFiltersAndSort();
 
-    // Log search apenas se houver texto
+    final filtered = _computeDisplayedPokemon();
+
     if (query.isNotEmpty) {
       analyticsService.logSearch(
         searchTerm: query,
-        resultsCount: _displayedPokemon.length,
+        resultsCount: filtered.length,
       );
     }
 
-    _emit(SuccessState(data: _displayedPokemon));
+    _emit(SuccessState(data: filtered));
   }
 
   @override
   void sortPokemon(SortType sortType) {
     _currentSort = sortType;
-    _applyFiltersAndSort();
 
-    // Log sort
-    final sortTypeStr = sortType == SortType.alphabetical
-        ? 'alphabetical'
-        : 'by_number';
+    analyticsService.logSort(
+      sortType:
+          sortType == SortType.alphabetical ? 'alphabetical' : 'by_number',
+    );
 
-    analyticsService.logSort(sortType: sortTypeStr);
-
-    _emit(SuccessState(data: _displayedPokemon));
+    _emit(SuccessState(data: _computeDisplayedPokemon()));
   }
 
   @override
   void filterByType(String? type) {
     _selectedTypeFilter = type;
-    _applyFiltersAndSort();
 
-    // Log filter
     if (type != null) {
       analyticsService.logFilter(filterType: 'type', filterValue: type);
     }
 
-    _emit(SuccessState(data: _displayedPokemon));
+    _emit(SuccessState(data: _computeDisplayedPokemon()));
   }
 
   @override
   void clearFilters() {
     _selectedTypeFilter = null;
     _searchQuery = '';
-    _applyFiltersAndSort();
 
-    // Log clear filters
     analyticsService.logFilterCleared();
 
-    _emit(SuccessState(data: _displayedPokemon));
+    _emit(SuccessState(data: _computeDisplayedPokemon()));
   }
 
   @override
@@ -193,26 +167,16 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
     );
   }
 
-  void _applyFiltersAndSort() {
+  List<PokemonEntity> _computeDisplayedPokemon() {
     var filtered = _allPokemon;
-
-    // Apply type filter
     filtered = filterByTypeUseCase.call(filtered, _selectedTypeFilter);
-
-    // Apply search
     filtered = searchPokemonsUseCase.call(filtered, _searchQuery);
-
-    // Apply sort
     filtered = sortPokemonsUseCase.call(filtered, _currentSort);
-
-    _displayedPokemon = filtered;
+    return filtered;
   }
 
   void _emit(PokemonState newState) {
-    if (_pokemonState != newState) {
-      _pokemonState = newState;
-      notifyListeners();
-      debugPrint('Pokemon State: $pokemonState');
-    }
+    emitState(newState);
+    debugPrint('Pokemon state: $state');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
+import 'package:poke_app/src/common/state_management/state_management.dart';
 import 'package:poke_app/src/common/widgets/advanced_filter_modal_widget.dart';
 import 'package:poke_app/src/common/widgets/sort_button_widget.dart';
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
@@ -17,8 +18,8 @@ class SearchAndFilterSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: pokemonsViewModel,
+    return StateBuilderWidget<PokemonsViewModel, PokemonState>(
+      viewModel: pokemonsViewModel,
       builder: (context, _) {
         return Padding(
           padding: const EdgeInsets.all(16),
@@ -89,7 +90,8 @@ class SearchAndFilterSectionWidget extends StatelessWidget {
         Expanded(
           child: SortButtonWidget(
             label: 'Alfabética (A-Z)',
-            isSelected: pokemonsViewModel.currentSort == SortType.alphabetical,
+            isSelected:
+                pokemonsViewModel.currentSort == SortType.alphabetical,
             onPressed: () =>
                 pokemonsViewModel.sortPokemon(SortType.alphabetical),
           ),
@@ -99,7 +101,8 @@ class SearchAndFilterSectionWidget extends StatelessWidget {
           child: SortButtonWidget(
             label: 'Código (crescente)',
             isSelected: pokemonsViewModel.currentSort == SortType.byNumber,
-            onPressed: () => pokemonsViewModel.sortPokemon(SortType.byNumber),
+            onPressed: () =>
+                pokemonsViewModel.sortPokemon(SortType.byNumber),
           ),
         ),
       ],

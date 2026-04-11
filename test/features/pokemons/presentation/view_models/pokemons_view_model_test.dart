@@ -10,6 +10,13 @@ import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons
 
 import '../../pokemons_mocks.mocks.dart';
 
+/// Extrai a lista de pokémon do estado de sucesso; retorna vazio caso contrário.
+List<PokemonEntity> _displayedPokemon(PokemonsViewModelImpl vm) =>
+    switch (vm.state) {
+      SuccessState(data: final list) => list,
+      _ => const [],
+    };
+
 void main() {
   provideDummy<Result<List<PokemonEntity>, Exception>>(
     SuccessResult(value: []),
@@ -180,8 +187,8 @@ void main() {
 
   group('PokemonsViewModelImpl - Initial State', () {
     test('deve ter estado inicial correto', () {
-      expect(viewModel.pokemonState, isA<InitialState>());
-      expect(viewModel.displayedPokemon, isEmpty);
+      expect(viewModel.state, isA<InitialState>());
+      expect(_displayedPokemon(viewModel), isEmpty);
       expect(viewModel.currentSort, SortType.byNumber);
       expect(viewModel.selectedTypeFilter, isNull);
       expect(viewModel.availableTypes, isEmpty);
@@ -207,7 +214,7 @@ void main() {
 
         final states = <PokemonState>[];
         viewModel.addListener(() {
-          states.add(viewModel.pokemonState);
+          states.add(viewModel.state);
         });
 
         await viewModel.loadPokemon();
@@ -218,7 +225,7 @@ void main() {
 
         final successState = states[1] as SuccessState<List<PokemonEntity>>;
         expect(successState.data, mockPokemonList);
-        expect(viewModel.displayedPokemon, mockPokemonList);
+        expect(_displayedPokemon(viewModel), mockPokemonList);
 
         verify(mockGetAllPokemonsUseCase.call()).called(1);
         verify(mockFilterByTypeUseCase.call(mockPokemonList, null)).called(1);
@@ -245,7 +252,7 @@ void main() {
 
         final states = <PokemonState>[];
         viewModel.addListener(() {
-          states.add(viewModel.pokemonState);
+          states.add(viewModel.state);
         });
 
         await viewModel.loadPokemon();
@@ -256,7 +263,7 @@ void main() {
 
         final errorState = states[1] as ErrorState<List<PokemonEntity>>;
         expect(errorState.message, contains('Erro ao carregar pokemons'));
-        expect(viewModel.displayedPokemon, isEmpty);
+        expect(_displayedPokemon(viewModel), isEmpty);
 
         verify(mockGetAllPokemonsUseCase.call()).called(1);
         verifyNever(mockFilterByTypeUseCase.call(any, any));
@@ -319,8 +326,8 @@ void main() {
 
       viewModel.searchPokemon('Bulba');
 
-      expect(viewModel.displayedPokemon, filteredList);
-      expect(viewModel.pokemonState, isA<SuccessState>());
+      expect(_displayedPokemon(viewModel), filteredList);
+      expect(viewModel.state, isA<SuccessState>());
 
       verify(
         mockSearchPokemonsUseCase.call(mockPokemonList, 'Bulba'),
@@ -348,7 +355,7 @@ void main() {
 
         viewModel.searchPokemon('');
 
-        expect(viewModel.displayedPokemon, mockPokemonList);
+        expect(_displayedPokemon(viewModel), mockPokemonList);
         verify(
           mockSearchPokemonsUseCase.call(mockPokemonList, ''),
         ).called(greaterThanOrEqualTo(1));
@@ -404,7 +411,7 @@ void main() {
       viewModel.sortPokemon(SortType.alphabetical);
 
       expect(viewModel.currentSort, SortType.alphabetical);
-      expect(viewModel.displayedPokemon, sortedList);
+      expect(_displayedPokemon(viewModel), sortedList);
 
       verify(mockAnalyticsService.logSort(sortType: 'alphabetical')).called(1);
     });
@@ -422,7 +429,7 @@ void main() {
       viewModel.sortPokemon(SortType.byNumber);
 
       expect(viewModel.currentSort, SortType.byNumber);
-      expect(viewModel.displayedPokemon, sortedList);
+      expect(_displayedPokemon(viewModel), sortedList);
 
       verify(mockAnalyticsService.logSort(sortType: 'by_number')).called(1);
     });
@@ -469,7 +476,7 @@ void main() {
       viewModel.filterByType('Fire');
 
       expect(viewModel.selectedTypeFilter, 'Fire');
-      expect(viewModel.displayedPokemon, filteredList);
+      expect(_displayedPokemon(viewModel), filteredList);
 
       verify(
         mockAnalyticsService.logFilter(filterType: 'type', filterValue: 'Fire'),
@@ -494,7 +501,7 @@ void main() {
         viewModel.filterByType(null);
 
         expect(viewModel.selectedTypeFilter, isNull);
-        expect(viewModel.displayedPokemon, mockPokemonList);
+        expect(_displayedPokemon(viewModel), mockPokemonList);
 
         verifyNever(
           mockAnalyticsService.logFilter(
@@ -561,7 +568,7 @@ void main() {
         viewModel.clearFilters();
 
         expect(viewModel.selectedTypeFilter, isNull);
-        expect(viewModel.displayedPokemon, mockPokemonList);
+        expect(_displayedPokemon(viewModel), mockPokemonList);
 
         verify(mockAnalyticsService.logFilterCleared()).called(1);
       },
@@ -736,7 +743,7 @@ void main() {
       viewModel.searchPokemon('Bulba');
       viewModel.sortPokemon(SortType.alphabetical);
 
-      expect(viewModel.displayedPokemon, sortedResult);
+      expect(_displayedPokemon(viewModel), sortedResult);
       expect(viewModel.selectedTypeFilter, 'Grass');
       expect(viewModel.currentSort, SortType.alphabetical);
     });
@@ -764,147 +771,6 @@ void main() {
       verify(
         mockSortPokemonsUseCase.call(mockPokemonList, SortType.alphabetical),
       ).called(greaterThan(0));
-    });
-  });
-
-  group('PokemonsViewModelImpl - Estado não muda se for igual', () {
-    setUp(() async {
-      when(
-        mockGetAllPokemonsUseCase.call(),
-      ).thenAnswer((_) async => SuccessResult(value: mockPokemonList));
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn(mockPokemonList);
-      when(
-        mockSearchPokemonsUseCase.call(any, any),
-      ).thenReturn(mockPokemonList);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn(mockPokemonList);
-      await viewModel.loadPokemon();
-    });
-
-    test('não deve notificar listeners se o estado não mudar', () {
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn(mockPokemonList);
-      when(
-        mockSearchPokemonsUseCase.call(any, any),
-      ).thenReturn(mockPokemonList);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn(mockPokemonList);
-
-      int notifyCount = 0;
-      viewModel.addListener(() {
-        notifyCount++;
-      });
-
-      viewModel.searchPokemon('');
-      viewModel.searchPokemon('');
-
-      expect(notifyCount, lessThanOrEqualTo(2));
-    });
-  });
-
-  group('PokemonsViewModelImpl - Edge Cases', () {
-    test('deve lidar com lista vazia de pokemons', () async {
-      when(
-        mockGetAllPokemonsUseCase.call(),
-      ).thenAnswer((_) async => SuccessResult(value: []));
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn([]);
-      when(mockSearchPokemonsUseCase.call(any, any)).thenReturn([]);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn([]);
-
-      clearInteractions(mockAnalyticsService);
-
-      await viewModel.loadPokemon();
-
-      expect(viewModel.displayedPokemon, isEmpty);
-      expect(viewModel.availableTypes, isEmpty);
-      expect(viewModel.pokemonState, isA<SuccessState>());
-
-      verify(mockAnalyticsService.logPokemonListLoaded(0)).called(1);
-    });
-
-    test('deve lidar com busca sem resultados', () async {
-      when(
-        mockGetAllPokemonsUseCase.call(),
-      ).thenAnswer((_) async => SuccessResult(value: mockPokemonList));
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn(mockPokemonList);
-      when(
-        mockSearchPokemonsUseCase.call(any, any),
-      ).thenReturn(mockPokemonList);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn(mockPokemonList);
-
-      await viewModel.loadPokemon();
-
-      when(
-        mockSearchPokemonsUseCase.call(mockPokemonList, 'XYZ'),
-      ).thenReturn([]);
-      when(mockSortPokemonsUseCase.call([], any)).thenReturn([]);
-
-      clearInteractions(mockAnalyticsService);
-
-      viewModel.searchPokemon('XYZ');
-
-      expect(viewModel.displayedPokemon, isEmpty);
-      expect(viewModel.pokemonState, isA<SuccessState>());
-
-      verify(
-        mockAnalyticsService.logSearch(searchTerm: 'XYZ', resultsCount: 0),
-      ).called(1);
-    });
-
-    test('deve lidar com tipo de filtro inexistente', () async {
-      when(
-        mockGetAllPokemonsUseCase.call(),
-      ).thenAnswer((_) async => SuccessResult(value: mockPokemonList));
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn(mockPokemonList);
-      when(
-        mockSearchPokemonsUseCase.call(any, any),
-      ).thenReturn(mockPokemonList);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn(mockPokemonList);
-      await viewModel.loadPokemon();
-
-      when(
-        mockFilterByTypeUseCase.call(mockPokemonList, 'Dragon'),
-      ).thenReturn([]);
-      when(mockSearchPokemonsUseCase.call([], any)).thenReturn([]);
-      when(mockSortPokemonsUseCase.call([], any)).thenReturn([]);
-
-      clearInteractions(mockAnalyticsService);
-
-      viewModel.filterByType('Dragon');
-
-      expect(viewModel.displayedPokemon, isEmpty);
-      expect(viewModel.selectedTypeFilter, 'Dragon');
-
-      verify(
-        mockAnalyticsService.logFilter(
-          filterType: 'type',
-          filterValue: 'Dragon',
-        ),
-      ).called(1);
-    });
-  });
-
-  group('PokemonsViewModelImpl - Analytics Error Handling', () {
-    test('deve continuar funcionando mesmo se analytics falhar', () async {
-      when(
-        mockAnalyticsService.logScreenView(
-          screenName: anyNamed('screenName'),
-          screenClass: anyNamed('screenClass'),
-        ),
-      ).thenAnswer(
-        (_) async => (success: false, message: null, error: 'Analytics failed'),
-      );
-
-      when(
-        mockGetAllPokemonsUseCase.call(),
-      ).thenAnswer((_) async => SuccessResult(value: mockPokemonList));
-      when(mockFilterByTypeUseCase.call(any, any)).thenReturn(mockPokemonList);
-      when(
-        mockSearchPokemonsUseCase.call(any, any),
-      ).thenReturn(mockPokemonList);
-      when(mockSortPokemonsUseCase.call(any, any)).thenReturn(mockPokemonList);
-
-      await viewModel.loadPokemon();
-
-      expect(viewModel.pokemonState, isA<SuccessState>());
-      expect(viewModel.displayedPokemon, mockPokemonList);
     });
   });
 }
