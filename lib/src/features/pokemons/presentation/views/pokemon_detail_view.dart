@@ -3,16 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/widgets/detail_section_title_widget.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
-import 'package:poke_app/src/features/pokemons/presentation/routes/pokemons_routes.dart';
-import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_header_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_name_section_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_physical_info_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_related_section_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_stats_section_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_types_section_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/detail_weaknesses_section_widget.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
+import 'package:poke_app/src/features/pokemons/presentation/presentation.dart';
 
 class PokemonDetailView extends StatefulWidget {
   final PokemonEntity pokemon;

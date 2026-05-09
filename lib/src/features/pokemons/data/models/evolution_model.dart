@@ -1,4 +1,4 @@
-import 'package:poke_app/src/features/pokemons/domain/entities/evolution_entity.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
 class EvolutionModel extends EvolutionEntity {
   @override

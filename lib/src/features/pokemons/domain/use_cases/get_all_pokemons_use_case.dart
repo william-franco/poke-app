@@ -1,8 +1,4 @@
-import 'package:poke_app/src/common/patterns/result_pattern.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
-import 'package:poke_app/src/features/pokemons/domain/repositories/pokemons_repository.dart';
-
-typedef PokemonResult = Result<List<PokemonEntity>, Exception>;
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
 abstract interface class GetAllPokemonsUseCase {
   Future<PokemonResult> call();

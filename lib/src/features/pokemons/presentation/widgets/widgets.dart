@@ -1,0 +1,12 @@
+export 'detail_header_widget.dart';
+export 'detail_name_section_widget.dart';
+export 'detail_physical_info_widget.dart';
+export 'detail_related_section_widget.dart';
+export 'detail_stats_section_widget.dart';
+export 'detail_types_section_widget.dart';
+export 'detail_weaknesses_section_widget.dart';
+export 'pokemon_card_widget.dart';
+export 'pokemon_content_section_widget.dart';
+export 'pokemons_grid_view_widget.dart';
+export 'related_pokemon_card_widget.dart';
+export 'search_and_filter_section_widget.dart';

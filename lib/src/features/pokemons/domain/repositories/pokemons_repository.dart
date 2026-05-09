@@ -1,6 +1,6 @@
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
 typedef PokemonResult = Result<List<PokemonEntity>, Exception>;
 

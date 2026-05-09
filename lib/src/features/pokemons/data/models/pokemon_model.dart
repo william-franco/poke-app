@@ -1,6 +1,6 @@
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/features/pokemons/data/models/evolution_model.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
+import 'package:poke_app/src/features/pokemons/data/data.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
 class PokemonModel extends PokemonEntity {
   @override

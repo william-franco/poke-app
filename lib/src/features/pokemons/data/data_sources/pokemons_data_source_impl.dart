@@ -4,8 +4,7 @@ import 'package:poke_app/src/common/constants/api_constant.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/common/services/connection_service.dart';
 import 'package:poke_app/src/common/services/http_service.dart';
-import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source.dart';
-import 'package:poke_app/src/features/pokemons/data/models/pokemons_model.dart';
+import 'package:poke_app/src/features/pokemons/data/data.dart';
 
 class PokemonRemoteDataSourceImpl implements PokemonsDataSource {
   final ConnectionService connectionService;

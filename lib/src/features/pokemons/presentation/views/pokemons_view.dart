@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/widgets/pokedex_header_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/pokemon_content_section_widget.dart';
-import 'package:poke_app/src/features/pokemons/presentation/widgets/search_and_filter_section_widget.dart';
+import 'package:poke_app/src/features/pokemons/presentation/presentation.dart';
 
 class PokemonsView extends StatefulWidget {
   final PokemonsViewModel pokemonsViewModel;

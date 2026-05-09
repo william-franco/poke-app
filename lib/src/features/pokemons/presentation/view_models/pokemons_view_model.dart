@@ -3,12 +3,7 @@ import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
 import 'package:poke_app/src/common/state_management/state_management.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
-import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart';
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart';
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_related_pokemons_use_case.dart';
-import 'package:poke_app/src/features/pokemons/domain/use_cases/search_pokemons_use_case.dart';
-import 'package:poke_app/src/features/pokemons/domain/use_cases/sort_pokemons_use_case.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
 typedef PokemonState = AppState<List<PokemonEntity>>;
 
@@ -117,8 +112,9 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
     _currentSort = sortType;
 
     analyticsService.logSort(
-      sortType:
-          sortType == SortType.alphabetical ? 'alphabetical' : 'by_number',
+      sortType: sortType == SortType.alphabetical
+          ? 'alphabetical'
+          : 'by_number',
     );
 
     _emit(SuccessState(data: _computeDisplayedPokemon()));

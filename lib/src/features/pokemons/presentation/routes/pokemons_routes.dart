@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poke_app/src/common/dependency_injectors/dependency_injector.dart';
-import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
-import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
-import 'package:poke_app/src/features/pokemons/presentation/views/pokemon_detail_view.dart';
-import 'package:poke_app/src/features/pokemons/presentation/views/pokemons_view.dart';
+import 'package:poke_app/src/features/pokemons/domain/domain.dart';
+import 'package:poke_app/src/features/pokemons/presentation/presentation.dart';
 
 class PokemonsRoutes {
   static String get pokemons => '/pokemons';
