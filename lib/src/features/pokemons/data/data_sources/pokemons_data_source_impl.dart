@@ -21,7 +21,7 @@ class PokemonRemoteDataSourceImpl implements PokemonsDataSource {
       await connectionService.checkConnection();
 
       if (!connectionService.isConnected) {
-        return ErrorResult(error: Exception('Sem conexão com a internet.'));
+        return ErrorResult(error: PokemonException('Sem conexão com a internet.'));
       }
 
       final result = await httpService.getData(path: ApiConstant.pokemons);
@@ -38,13 +38,13 @@ class PokemonRemoteDataSourceImpl implements PokemonsDataSource {
       }
 
       return ErrorResult(
-        error: Exception(
+        error: PokemonException(
           'Erro ao buscar pokemons. Código da API: ${result.statusCode}',
         ),
       );
     } catch (error) {
       return ErrorResult(
-        error: Exception('Erro inesperado ao buscar pokemons: $error'),
+        error: PokemonException('Erro inesperado ao buscar pokemons: $error'),
       );
     }
   }

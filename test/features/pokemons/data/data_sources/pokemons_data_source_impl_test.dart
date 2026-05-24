@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
+import 'package:poke_app/src/features/pokemons/data/data.dart';
 import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source_impl.dart';
-import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart';
 
 import '../../pokemons_mocks.mocks.dart';
 
@@ -86,7 +86,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<SuccessResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<SuccessResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (pokemons) {
@@ -124,7 +124,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<SuccessResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<SuccessResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (pokemons) {
@@ -160,7 +160,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<SuccessResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<SuccessResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (pokemons) {
@@ -185,7 +185,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),
@@ -214,7 +214,7 @@ void main() {
       final result = await dataSource.getAllPokemon();
 
       // Assert
-      expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+      expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
       result.fold(
         onSuccess: (_) => fail('Should not return success'),
@@ -243,7 +243,7 @@ void main() {
       final result = await dataSource.getAllPokemon();
 
       // Assert
-      expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+      expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
       result.fold(
         onSuccess: (_) => fail('Should not return success'),
@@ -275,7 +275,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),
@@ -303,7 +303,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),
@@ -337,7 +337,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),
@@ -371,7 +371,7 @@ void main() {
       final result = await dataSource.getAllPokemon();
 
       // Assert
-      expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+      expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
       result.fold(
         onSuccess: (_) => fail('Should not return success'),
@@ -410,7 +410,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<Result<List<PokemonModel>, Exception>>());
+        expect(result, isA<Result<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (pokemons) {
@@ -443,7 +443,7 @@ void main() {
       final result = await dataSource.getAllPokemon();
 
       // Assert
-      expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+      expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
       result.fold(
         onSuccess: (_) => fail('Should not return success'),
@@ -469,7 +469,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),
@@ -497,7 +497,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<ErrorResult<List<PokemonModel>, Exception>>());
+        expect(result, isA<ErrorResult<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (_) => fail('Should not return success'),

@@ -4,7 +4,7 @@ import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
-import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart';
+import 'package:poke_app/src/features/pokemons/data/data.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
 
@@ -18,7 +18,7 @@ List<PokemonEntity> _displayedPokemon(PokemonsViewModelImpl vm) =>
     };
 
 void main() {
-  provideDummy<Result<List<PokemonEntity>, Exception>>(
+  provideDummy<Result<List<PokemonEntity>, PokemonException>>(
     SuccessResult(value: []),
   );
 
@@ -221,9 +221,9 @@ void main() {
 
         expect(states.length, 2);
         expect(states[0], isA<LoadingState>());
-        expect(states[1], isA<SuccessState<List<PokemonEntity>>>());
+        expect(states[1], isA<SuccessState<List<PokemonEntity>, PokemonException>>());
 
-        final successState = states[1] as SuccessState<List<PokemonEntity>>;
+        final successState = states[1] as SuccessState<List<PokemonEntity>, PokemonException>;
         expect(successState.data, mockPokemonList);
         expect(_displayedPokemon(viewModel), mockPokemonList);
 
@@ -245,7 +245,7 @@ void main() {
     test(
       'deve emitir LoadingState e depois ErrorState quando ocorrer erro ao carregar pokemons E logar erro',
       () async {
-        final exception = Exception('Erro ao carregar pokemons');
+        final exception = PokemonException('Erro ao carregar pokemons');
         when(
           mockGetAllPokemonsUseCase.call(),
         ).thenAnswer((_) async => ErrorResult(error: exception));
@@ -259,10 +259,10 @@ void main() {
 
         expect(states.length, 2);
         expect(states[0], isA<LoadingState>());
-        expect(states[1], isA<ErrorState<List<PokemonEntity>>>());
+        expect(states[1], isA<ErrorState<List<PokemonEntity>, PokemonException>>());
 
-        final errorState = states[1] as ErrorState<List<PokemonEntity>>;
-        expect(errorState.message, contains('Erro ao carregar pokemons'));
+        final errorState = states[1] as ErrorState<List<PokemonEntity>, PokemonException>;
+        expect(errorState.error.message, contains('Erro ao carregar pokemons'));
         expect(_displayedPokemon(viewModel), isEmpty);
 
         verify(mockGetAllPokemonsUseCase.call()).called(1);
@@ -276,7 +276,7 @@ void main() {
 
         verify(
           mockAnalyticsService.logPokemonLoadError(
-            'Exception: Erro ao carregar pokemons',
+            'Erro ao carregar pokemons',
           ),
         ).called(1);
       },

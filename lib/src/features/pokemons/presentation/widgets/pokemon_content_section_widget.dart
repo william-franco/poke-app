@@ -28,8 +28,8 @@ class PokemonContentSectionWidget extends StatelessWidget {
             LoadingState() => const Center(
               child: CircularProgressIndicator(color: ThemeDesign.primaryRed),
             ),
-            ErrorState(message: final msg) => ErrorViewWidget(
-              message: msg,
+            ErrorState(error: final e) => ErrorViewWidget(
+              message: e.message,
               onRetry: pokemonsViewModel.loadPokemon,
             ),
             SuccessState(data: final pokemonList) => PokemonsGridViewWidget(

@@ -3,9 +3,10 @@ import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
 import 'package:poke_app/src/common/state_management/state_management.dart';
+import 'package:poke_app/src/features/pokemons/data/data.dart';
 import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
-typedef PokemonState = AppState<List<PokemonEntity>>;
+typedef PokemonState = AppState<List<PokemonEntity>, PokemonException>;
 
 typedef _ViewModel = StateManagement<PokemonState>;
 
@@ -83,8 +84,8 @@ class PokemonsViewModelImpl extends _ViewModel implements PokemonsViewModel {
         return SuccessState(data: _computeDisplayedPokemon());
       },
       onError: (error) {
-        analyticsService.logPokemonLoadError(error.toString());
-        return ErrorState(message: '$error');
+        analyticsService.logPokemonLoadError(error.message);
+        return ErrorState(error: error);
       },
     );
 

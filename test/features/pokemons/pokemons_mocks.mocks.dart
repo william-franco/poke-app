@@ -4,34 +4,22 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:ui' as _i19;
+import 'dart:ui' as _i14;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i10;
-import 'package:poke_app/src/common/enums/pokemons_enums.dart' as _i16;
-import 'package:poke_app/src/common/patterns/app_state_pattern.dart' as _i18;
+import 'package:mockito/src/dummies.dart' as _i9;
+import 'package:poke_app/src/common/enums/pokemons_enums.dart' as _i11;
+import 'package:poke_app/src/common/patterns/app_state_pattern.dart' as _i13;
 import 'package:poke_app/src/common/patterns/result_pattern.dart' as _i8;
 import 'package:poke_app/src/common/services/analytics_service.dart' as _i2;
 import 'package:poke_app/src/common/services/connection_service.dart' as _i5;
 import 'package:poke_app/src/common/services/http_service.dart' as _i6;
-import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source.dart'
-    as _i7;
-import 'package:poke_app/src/features/pokemons/data/models/pokemon_model.dart'
-    as _i9;
+import 'package:poke_app/src/features/pokemons/data/data.dart' as _i7;
+import 'package:poke_app/src/features/pokemons/domain/domain.dart' as _i10;
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart'
     as _i4;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/filter_by_type_use_case.dart'
-    as _i11;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_all_pokemons_use_case.dart'
-    as _i12;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/get_related_pokemons_use_case.dart'
-    as _i13;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/search_pokemons_use_case.dart'
-    as _i14;
-import 'package:poke_app/src/features/pokemons/domain/use_cases/sort_pokemons_use_case.dart'
-    as _i15;
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart'
-    as _i17;
+    as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -339,24 +327,29 @@ class MockPokemonsDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>> getAllPokemon() =>
+  _i3.Future<_i8.Result<List<_i7.PokemonModel>, _i7.PokemonException>>
+  getAllPokemon() =>
       (super.noSuchMethod(
             Invocation.method(#getAllPokemon, []),
             returnValue:
-                _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>>.value(
-                  _i10.dummyValue<
-                    _i8.Result<List<_i9.PokemonModel>, Exception>
+                _i3.Future<
+                  _i8.Result<List<_i7.PokemonModel>, _i7.PokemonException>
+                >.value(
+                  _i9.dummyValue<
+                    _i8.Result<List<_i7.PokemonModel>, _i7.PokemonException>
                   >(this, Invocation.method(#getAllPokemon, [])),
                 ),
           )
-          as _i3.Future<_i8.Result<List<_i9.PokemonModel>, Exception>>);
+          as _i3.Future<
+            _i8.Result<List<_i7.PokemonModel>, _i7.PokemonException>
+          >);
 }
 
 /// A class which mocks [FilterByTypeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFilterByTypeUseCase extends _i1.Mock
-    implements _i11.FilterByTypeUseCase {
+    implements _i10.FilterByTypeUseCase {
   MockFilterByTypeUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -377,32 +370,35 @@ class MockFilterByTypeUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllPokemonsUseCase extends _i1.Mock
-    implements _i12.GetAllPokemonsUseCase {
+    implements _i10.GetAllPokemonsUseCase {
   MockGetAllPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i8.Result<List<_i4.PokemonEntity>, Exception>> call() =>
+  _i3.Future<_i8.Result<List<_i4.PokemonEntity>, _i7.PokemonException>>
+  call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
             returnValue:
                 _i3.Future<
-                  _i8.Result<List<_i4.PokemonEntity>, Exception>
+                  _i8.Result<List<_i4.PokemonEntity>, _i7.PokemonException>
                 >.value(
-                  _i10.dummyValue<
-                    _i8.Result<List<_i4.PokemonEntity>, Exception>
+                  _i9.dummyValue<
+                    _i8.Result<List<_i4.PokemonEntity>, _i7.PokemonException>
                   >(this, Invocation.method(#call, [])),
                 ),
           )
-          as _i3.Future<_i8.Result<List<_i4.PokemonEntity>, Exception>>);
+          as _i3.Future<
+            _i8.Result<List<_i4.PokemonEntity>, _i7.PokemonException>
+          >);
 }
 
 /// A class which mocks [GetRelatedPokemonsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetRelatedPokemonsUseCase extends _i1.Mock
-    implements _i13.GetRelatedPokemonsUseCase {
+    implements _i10.GetRelatedPokemonsUseCase {
   MockGetRelatedPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -423,7 +419,7 @@ class MockGetRelatedPokemonsUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSearchPokemonsUseCase extends _i1.Mock
-    implements _i14.SearchPokemonsUseCase {
+    implements _i10.SearchPokemonsUseCase {
   MockSearchPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -444,7 +440,7 @@ class MockSearchPokemonsUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSortPokemonsUseCase extends _i1.Mock
-    implements _i15.SortPokemonsUseCase {
+    implements _i10.SortPokemonsUseCase {
   MockSortPokemonsUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -452,7 +448,7 @@ class MockSortPokemonsUseCase extends _i1.Mock
   @override
   List<_i4.PokemonEntity> call(
     List<_i4.PokemonEntity>? pokemonList,
-    _i16.SortType? sortType,
+    _i11.SortType? sortType,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#call, [pokemonList, sortType]),
@@ -464,18 +460,18 @@ class MockSortPokemonsUseCase extends _i1.Mock
 /// A class which mocks [PokemonsViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
+class MockPokemonsViewModel extends _i1.Mock implements _i12.PokemonsViewModel {
   MockPokemonsViewModel() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i16.SortType get currentSort =>
+  _i11.SortType get currentSort =>
       (super.noSuchMethod(
             Invocation.getter(#currentSort),
-            returnValue: _i16.SortType.alphabetical,
+            returnValue: _i11.SortType.alphabetical,
           )
-          as _i16.SortType);
+          as _i11.SortType);
 
   @override
   List<String> get availableTypes =>
@@ -486,16 +482,15 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
           as List<String>);
 
   @override
-  _i18.AppState<List<_i4.PokemonEntity>> get state =>
+  _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException> get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _i10
-                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
-                  this,
-                  Invocation.getter(#state),
-                ),
+            returnValue: _i9
+                .dummyValue<
+                  _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException>
+                >(this, Invocation.getter(#state)),
           )
-          as _i18.AppState<List<_i4.PokemonEntity>>);
+          as _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException>);
 
   @override
   bool get hasListeners =>
@@ -518,7 +513,7 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
   );
 
   @override
-  void sortPokemon(_i16.SortType? sortType) => super.noSuchMethod(
+  void sortPokemon(_i11.SortType? sortType) => super.noSuchMethod(
     Invocation.method(#sortPokemon, [sortType]),
     returnValueForMissingStub: null,
   );
@@ -565,32 +560,32 @@ class MockPokemonsViewModel extends _i1.Mock implements _i17.PokemonsViewModel {
           as _i3.Future<void>);
 
   @override
-  _i18.AppState<List<_i4.PokemonEntity>> build() =>
+  _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException> build() =>
       (super.noSuchMethod(
             Invocation.method(#build, []),
-            returnValue: _i10
-                .dummyValue<_i18.AppState<List<_i4.PokemonEntity>>>(
-                  this,
-                  Invocation.method(#build, []),
-                ),
+            returnValue: _i9
+                .dummyValue<
+                  _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException>
+                >(this, Invocation.method(#build, [])),
           )
-          as _i18.AppState<List<_i4.PokemonEntity>>);
+          as _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException>);
 
   @override
-  void emitState(_i18.AppState<List<_i4.PokemonEntity>>? newState) =>
-      super.noSuchMethod(
-        Invocation.method(#emitState, [newState]),
-        returnValueForMissingStub: null,
-      );
+  void emitState(
+    _i13.AppState<List<_i4.PokemonEntity>, _i7.PokemonException>? newState,
+  ) => super.noSuchMethod(
+    Invocation.method(#emitState, [newState]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void addListener(_i19.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i14.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#addListener, [listener]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void removeListener(_i19.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i14.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#removeListener, [listener]),
     returnValueForMissingStub: null,
   );
