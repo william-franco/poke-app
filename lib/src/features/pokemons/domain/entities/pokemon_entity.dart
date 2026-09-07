@@ -3,7 +3,7 @@ import 'package:poke_app/src/features/pokemons/domain/entities/evolution_entity.
 
 class PokemonEntity {
   final int? id;
-  final String? num;
+  final String? number;
   final String? name;
   final String? img;
   final List<Type>? type;
@@ -22,7 +22,7 @@ class PokemonEntity {
 
   PokemonEntity({
     this.id,
-    this.num,
+    this.number,
     this.name,
     this.img,
     this.type,

@@ -20,7 +20,7 @@ class RelatedPokemonCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final types = pokemon.type ?? [];
-    final primaryType = types.isNotEmpty ? types.first : Type.NORMAL;
+    final primaryType = types.isNotEmpty ? types.first : Type.normal;
     final typeColor = ThemeDesign.getTypeColor(_getTypeString(primaryType));
 
     return Material(
@@ -65,7 +65,7 @@ class RelatedPokemonCardWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                '#${pokemon.num ?? '???'}',
+                '#${pokemon.number ?? '???'}',
                 style: TextStyle(fontSize: 10, color: typeColor),
               ),
             ],

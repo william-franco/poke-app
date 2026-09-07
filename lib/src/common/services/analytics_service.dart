@@ -197,8 +197,8 @@ class AnalyticsServiceImpl implements AnalyticsService {
       'eventName': 'app_error',
       'parameters': {
         'error_message': errorMessage,
-        if (errorCode != null) 'error_code': errorCode,
-        if (additionalData != null) ...additionalData,
+        'error_code': ?errorCode,
+        ...?additionalData,
       },
     });
   }

@@ -29,11 +29,11 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
 
     return pokemonList.where((pokemon) {
       final name = pokemon.name?.toLowerCase() ?? '';
-      final num = pokemon.num ?? '';
+      final pokemonNumber = pokemon.number ?? '';
       final types = pokemon.type ?? [];
 
       return name.contains(lowercaseQuery) ||
-          num.contains(lowercaseQuery) ||
+          pokemonNumber.contains(lowercaseQuery) ||
           types.any(
             (typeEnum) => typeEnum.name.toLowerCase().contains(lowercaseQuery),
           );
@@ -92,12 +92,12 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
 
     if (pokemon.prevEvolution != null) {
       for (var evo in pokemon.prevEvolution!) {
-        final evoNum = evo.num;
-        if (evoNum == null) continue;
+        final evoNumber = evo.number;
+        if (evoNumber == null) continue;
 
         PokemonEntity? found;
         for (final p in allPokemon) {
-          if (p.num == evoNum) {
+          if (p.number == evoNumber) {
             found = p;
             break;
           }
@@ -111,12 +111,12 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
 
     if (pokemon.nextEvolution != null) {
       for (var evo in pokemon.nextEvolution!) {
-        final evoNum = evo.num;
-        if (evoNum == null) continue;
+        final evoNumber = evo.number;
+        if (evoNumber == null) continue;
 
         PokemonEntity? found;
         for (final p in allPokemon) {
-          if (p.num == evoNum) {
+          if (p.number == evoNumber) {
             found = p;
             break;
           }

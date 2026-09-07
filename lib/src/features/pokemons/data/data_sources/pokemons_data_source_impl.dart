@@ -32,7 +32,7 @@ class PokemonRemoteDataSourceImpl implements PokemonsDataSource {
             : result.data as Map<String, dynamic>;
 
         final pokemonsModel = PokemonsModel.fromJson(data);
-        final pokemons = pokemonsModel.pokemon ?? [];
+        final pokemons = List<PokemonModel>.from(pokemonsModel.pokemon ?? []);
 
         return SuccessResult(value: pokemons);
       }

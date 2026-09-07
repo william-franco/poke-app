@@ -92,9 +92,9 @@ void main() {
             expect(pokemons, isA<List<PokemonModel>>());
             expect(pokemons.length, 2);
             expect(pokemons[0].name, 'Bulbasaur');
-            expect(pokemons[0].num, '001');
+            expect(pokemons[0].number, '001');
             expect(pokemons[1].name, 'Ivysaur');
-            expect(pokemons[1].num, '002');
+            expect(pokemons[1].number, '002');
           },
           onError: (_) => fail('Should not return error'),
         );

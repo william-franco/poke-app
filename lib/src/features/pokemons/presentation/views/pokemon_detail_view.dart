@@ -36,7 +36,7 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
   @override
   Widget build(BuildContext context) {
     final types = widget.pokemon.type ?? [];
-    final primaryType = types.isNotEmpty ? types.first : Type.NORMAL;
+    final primaryType = types.isNotEmpty ? types.first : Type.normal;
     final typeColor = ThemeDesign.getTypeColor(_getTypeString(primaryType));
 
     return Scaffold(
@@ -124,10 +124,11 @@ class _PokemonDetailViewState extends State<PokemonDetailView> {
                   onRelatedTap: (related) {
                     widget.viewModel.logEvolutionView(widget.pokemon, related);
 
+                    final router = GoRouter.of(context);
                     context.pop();
 
                     Future.delayed(const Duration(milliseconds: 250), () {
-                      context.push(
+                      router.push(
                         PokemonsRoutes.pokemonDetail,
                         extra: related,
                       );

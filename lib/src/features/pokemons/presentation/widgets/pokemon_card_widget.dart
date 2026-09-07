@@ -21,7 +21,7 @@ class PokemonCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final types = pokemon.type ?? [];
-    final primaryType = types.isNotEmpty ? types.first : Type.NORMAL;
+    final primaryType = types.isNotEmpty ? types.first : Type.normal;
     final typeColor = ThemeDesign.getTypeColor(_getTypeString(primaryType));
 
     return GestureDetector(
@@ -65,7 +65,7 @@ class PokemonCardWidget extends StatelessWidget {
                       top: 8,
                       right: 8,
                       child: Text(
-                        '#${pokemon.num ?? '???'}',
+                        '#${pokemon.number ?? '???'}',
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.w600,

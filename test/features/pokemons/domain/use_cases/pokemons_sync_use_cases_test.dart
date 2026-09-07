@@ -8,8 +8,8 @@ import '../../pokemons_mocks.mocks.dart';
 
 void main() {
   final tPokemonList = [
-    PokemonModel(id: 1, num: '001', name: 'Bulbasaur', type: [Type.GRASS]),
-    PokemonModel(id: 2, num: '002', name: 'Ivysaur', type: [Type.GRASS]),
+    PokemonModel(id: 1, number: '001', name: 'Bulbasaur', type: [Type.grass]),
+    PokemonModel(id: 2, number: '002', name: 'Ivysaur', type: [Type.grass]),
   ];
 
   group('SearchPokemonsUseCaseImpl', () {

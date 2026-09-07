@@ -59,7 +59,7 @@ class DetailHeaderWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
-                '#${pokemon.num ?? '???'}',
+                '#${pokemon.number ?? '???'}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

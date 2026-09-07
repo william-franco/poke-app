@@ -1,6 +1,6 @@
 class EvolutionEntity {
-  final String? num;
+  final String? number;
   final String? name;
 
-  EvolutionEntity({this.num, this.name});
+  EvolutionEntity({this.number, this.name});
 }

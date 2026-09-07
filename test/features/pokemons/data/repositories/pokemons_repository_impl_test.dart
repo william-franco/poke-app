@@ -13,9 +13,9 @@ void main() {
     late PokemonsRepositoryImpl repository;
 
     final tPokemonList = [
-      PokemonModel(id: 1, num: '001', name: 'Bulbasaur', type: [Type.GRASS]),
-      PokemonModel(id: 2, num: '002', name: 'Ivysaur', type: [Type.GRASS]),
-      PokemonModel(id: 3, num: '003', name: 'Venusaur', type: [Type.GRASS]),
+      PokemonModel(id: 1, number: '001', name: 'Bulbasaur', type: [Type.grass]),
+      PokemonModel(id: 2, number: '002', name: 'Ivysaur', type: [Type.grass]),
+      PokemonModel(id: 3, number: '003', name: 'Venusaur', type: [Type.grass]),
     ];
 
     setUpAll(() {
@@ -97,7 +97,7 @@ void main() {
       test('filters by type name', () {
         final mixed = [
           ...tPokemonList,
-          PokemonModel(id: 4, num: '004', name: 'Charmander', type: [Type.FIRE]),
+          PokemonModel(id: 4, number: '004', name: 'Charmander', type: [Type.fire]),
         ];
 
         final result = repository.filterByType(mixed, 'fire');
@@ -111,10 +111,10 @@ void main() {
       test('returns prev and next evolution matches', () {
         final ivysaur = PokemonModel(
           id: 2,
-          num: '002',
+          number: '002',
           name: 'Ivysaur',
-          prevEvolution: [EvolutionModel(num: '001', name: 'Bulbasaur')],
-          nextEvolution: [EvolutionModel(num: '003', name: 'Venusaur')],
+          prevEvolution: [EvolutionModel(number: '001', name: 'Bulbasaur')],
+          nextEvolution: [EvolutionModel(number: '003', name: 'Venusaur')],
         );
 
         final result = repository.getRelatedPokemon(ivysaur, tPokemonList);
