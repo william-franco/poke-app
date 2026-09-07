@@ -3,7 +3,7 @@ import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/features/pokemons/data/data.dart';
 import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
-typedef PokemonResult = Result<List<PokemonEntity>, PokemonException>;
+typedef PokemonResult = ResultPattern<List<PokemonEntity>, PokemonException>;
 
 abstract interface class PokemonsRepository {
   Future<PokemonResult> getAllPokemon();

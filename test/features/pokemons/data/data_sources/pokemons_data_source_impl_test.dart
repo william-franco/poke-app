@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/features/pokemons/data/data.dart';
-import 'package:poke_app/src/features/pokemons/data/data_sources/pokemons_data_source_impl.dart';
 
 import '../../pokemons_mocks.mocks.dart';
 
@@ -410,7 +409,7 @@ void main() {
         final result = await dataSource.getAllPokemon();
 
         // Assert
-        expect(result, isA<Result<List<PokemonModel>, PokemonException>>());
+        expect(result, isA<ResultPattern<List<PokemonModel>, PokemonException>>());
 
         result.fold(
           onSuccess: (pokemons) {

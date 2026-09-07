@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
+import 'package:poke_app/src/common/patterns/state_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
 import 'package:poke_app/src/common/state_management/state_management.dart';
 import 'package:poke_app/src/features/pokemons/data/data.dart';
 import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 
-typedef PokemonState = AppState<List<PokemonEntity>, PokemonException>;
+typedef PokemonState = StatePattern<List<PokemonEntity>, PokemonException>;
 
 typedef _ViewModel = StateManagement<PokemonState>;
 

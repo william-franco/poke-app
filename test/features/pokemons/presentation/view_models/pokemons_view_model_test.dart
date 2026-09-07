@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/common/patterns/app_state_pattern.dart';
+import 'package:poke_app/src/common/patterns/state_pattern.dart';
 import 'package:poke_app/src/common/patterns/result_pattern.dart';
 import 'package:poke_app/src/common/services/analytics_service.dart';
 import 'package:poke_app/src/features/pokemons/data/data.dart';
@@ -18,7 +18,7 @@ List<PokemonEntity> _displayedPokemon(PokemonsViewModelImpl vm) =>
     };
 
 void main() {
-  provideDummy<Result<List<PokemonEntity>, PokemonException>>(
+  provideDummy<ResultPattern<List<PokemonEntity>, PokemonException>>(
     SuccessResult(value: []),
   );
 
