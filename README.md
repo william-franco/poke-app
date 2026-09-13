@@ -1,12 +1,42 @@
 # Poke App
 
-Flutter application that consumes the Pokémon API to display, list, and detail information about creatures quickly and responsively.
+Flutter client for browsing Pokémon from a remote JSON API with list, search, filter, and detail screens.
+
+Domain use cases handle sorting, filtering, and related evolutions; repositories propagate `ResultPattern` outcomes.
+
+Presentation uses view models with `StatePattern` for loading, success, and error UI states.
+
+Native Firebase Analytics on Android logs navigation and errors alongside Dio networking.
+
+Includes layered tests (data sources, repositories, use cases, view models) and CI with analyze and coverage.
+
+## Structure
+
+```mermaid
+flowchart TB
+  subgraph presentation [presentation]
+    PokemonsRoutes --> PokemonsViewModel
+    PokemonsView --> PokemonsViewModel
+  end
+  PokemonsViewModel --> GetAllPokemonsUseCase
+  PokemonsViewModel --> SearchPokemonsUseCase
+  subgraph domain [domain]
+    GetAllPokemonsUseCase --> PokemonsRepositoryPort[PokemonsRepository]
+    SearchPokemonsUseCase --> PokemonsRepositoryPort
+  end
+  subgraph data [data]
+    PokemonsRepositoryPort --> PokemonsRepositoryImpl
+    PokemonsRepositoryImpl --> RemoteDataSource
+    RemoteDataSource --> PokeApi[PokeAPI]
+  end
+  PokemonsViewModel --> AnalyticsService
+```
 
 ## Stack
 
 | Technology | Version |
 |------------|---------|
-| Dart SDK | ^3.13.2 |
+| Dart SDK | ^3.13.3 |
 | connectivity_plus | ^7.1.1 |
 | cupertino_icons | ^1.0.8 |
 | dio | ^5.9.2 |
