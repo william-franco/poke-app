@@ -36,15 +36,15 @@ flowchart TB
 
 | Technology | Version |
 |------------|---------|
-| Dart SDK | ^3.13.4 |
+| Dart SDK | ^3.13.5 |
 | connectivity_plus | ^7.1.1 |
 | cupertino_icons | ^1.0.8 |
-| dio | ^5.9.2 |
-| get_it | ^9.2.1 |
-| go_router | ^17.2.3 |
+| dio | ^5.11.1 |
+| get_it | ^9.3.0 |
+| go_router | ^18.0.2 |
 | flutter_lints | ^6.0.0 |
-| build_runner | ^2.15.0 |
-| mockito | ^5.6.4 |
+| build_runner | ^2.16.2 |
+| mockito | ^5.8.1 |
 | Android Gradle Plugin | 9.1.0 |
 | Kotlin | 2.4.0 |
 | NDK | 30.0.16248370 |
