@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/common/widgets/detail_section_title_widget.dart';
+import 'package:poke_app/src/common/design/widgets/detail_section_title_widget.dart';
 import 'package:poke_app/src/features/pokemons/domain/domain.dart';
 import 'package:poke_app/src/features/pokemons/presentation/presentation.dart';
 

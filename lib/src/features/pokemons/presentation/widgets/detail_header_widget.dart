@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_app/src/common/widgets/circle_pattern_painter_widget.dart';
+import 'package:poke_app/src/common/design/widgets/circle_pattern_painter_widget.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 
 class DetailHeaderWidget extends StatelessWidget {

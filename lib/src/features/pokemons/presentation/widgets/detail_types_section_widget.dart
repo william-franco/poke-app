@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
-import 'package:poke_app/src/common/widgets/type_chip_widget.dart';
+import 'package:poke_app/src/common/design/widgets/type_chip_widget.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 
 class DetailTypesSectionWidget extends StatelessWidget {

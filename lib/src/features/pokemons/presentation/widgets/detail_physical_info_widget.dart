@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_app/src/common/widgets/info_card_widget.dart';
+import 'package:poke_app/src/common/design/widgets/info_card_widget.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 
 class DetailPhysicalInfoWidget extends StatelessWidget {

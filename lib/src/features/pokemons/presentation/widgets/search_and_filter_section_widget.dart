@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
 import 'package:poke_app/src/common/state_management/state_management.dart';
-import 'package:poke_app/src/common/widgets/advanced_filter_modal_widget.dart';
-import 'package:poke_app/src/common/widgets/sort_button_widget.dart';
+import 'package:poke_app/src/common/design/widgets/advanced_filter_modal_widget.dart';
+import 'package:poke_app/src/common/design/widgets/sort_button_widget.dart';
 import 'package:poke_app/src/features/pokemons/presentation/view_models/pokemons_view_model.dart';
 
 class SearchAndFilterSectionWidget extends StatelessWidget {
