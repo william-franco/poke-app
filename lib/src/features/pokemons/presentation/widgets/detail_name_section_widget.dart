@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:poke_app/src/features/pokemons/domain/entities/pokemon_entity.dart';
 
 class DetailNameSectionWidget extends StatelessWidget {

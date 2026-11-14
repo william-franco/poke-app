@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poke_app/src/common/design/theme_design.dart';
 import 'package:poke_app/src/common/enums/pokemons_enums.dart';
